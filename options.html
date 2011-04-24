@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>CSS Inject Options</title>
+
+<script>
+
+// Initialize
+function init() {
+    // focus on the input field 
+    var cssfile = document.getElementById('cssfile');
+    cssfile.focus();
+    
+    restore_options();
+}
+
+// Saves options to localStorage.
+function save_options() {
+    var cssfile = document.getElementById('cssfile');
+    localStorage['cssfile'] = cssfile.value;
+
+    // Update status to let user know options were saved.
+    var status = document.getElementById('status');
+    status.innerHTML = 'Options Saved.';
+    setTimeout(function() {
+        status.innerHTML = '';
+    }, 750);
+}
+
+// Restores select box state to saved value from localStorage.
+function restore_options() {
+    var cssfileValue = localStorage['cssfile'];
+    if (!cssfileValue) {
+        return;
+    }
+
+    var cssfile = document.getElementById('cssfile');
+    cssfile.value = cssfileValue;
+}
+</script>
+
+<style>
+body {
+    font-family: arial;
+    font-size: 14px;
+}
+#status {
+    height: 50px;
+    color: #00ff00;
+}
+</style>
+
+</head>
+
+<body onload="init()">
+    <div id='status'></div>
+
+    <label for="cssfile">CSS File to inject (must be hosted on a web server):</label>
+    <br/>
+    
+    <input type="text" id="cssfile" style="width: 300px;" />
+    <br/>
+    <br/>
+   
+    <!-- 
+    <input type="checkbox" id="removeExistingCss" value="true" />
+    <label for="removeExistingCss">Remove all existing CSS? (experimental)</label>
+    -->
+
+    <br/>
+    <br/>
+    
+    <button onclick="save_options()">Save</button>
+</body>
+</html>
+

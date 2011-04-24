@@ -1,0 +1,56 @@
+<html>
+<head>
+    <script>
+
+    // TODO: icons
+    // TODO: Shortcut keys 
+    // TODO: Optionally remove all existing CSS?
+    // TODO: Keep 'on' state after page refresh
+
+    var state = 'off';
+
+    function error(msg) {
+        alert('An error occurred. ' + msg);
+    }
+
+    function turnOn(tabId) {
+        state = 'on';
+        chrome.browserAction.setBadgeText({text: 'on', tabId: tabId});
+    }
+
+    function turnOff(tabId) {
+        chrome.browserAction.setBadgeText({text: '', tabId: tabId});
+        state = 'off';
+    }
+
+
+    // EVENTS
+
+    // User clicked the activate action button
+    chrome.browserAction.onClicked.addListener(function(tab) {
+
+        // toggle state on click
+        state = state === 'off' ? 'on' : 'off';
+
+        // send a 'load/unload' msg to the embedded content script
+        chrome.tabs.sendRequest(
+            tab.id, 
+            {
+                state: state, 
+                id: 'cssinject-injected-cssfile', 
+                href: localStorage['cssfile']
+            }, 
+            function(resp) {
+                if (!resp.ok) {
+                    error('could not load css file');
+                }
+
+                state === 'on' ? turnOn(tab.id) : turnOff(tab.id);
+            }
+        );
+
+    });
+
+    </script>
+</head>
+</html>
