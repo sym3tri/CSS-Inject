@@ -2,12 +2,28 @@
 
 A Chrome Extension that allows injection of any hosted CSS file into a webpage
 
-# Install
+## Installation
 
 Just download and install it like any other old chrome extension.
 Available here (coming soon...)
 
-# Boring Copyright Stuff
+## Features
+
+* Specify any hosted CSS file to inject (local files must be hosted under http://localhost/... - security restriction of Chrome)
+* Single click toggles injection on/off
+
+## Why do I want this?
+
+This is to aid in theming websites such as Wordpress or Tumblr.
+It's for those cases where you're developing a complex Stylesheet for a site template
+but you can't easily update the CSS file on the server.
+
+Using this plugin: you can work off a localhost hosted CSS file, just hit save, and see the results immediately.
+No more copying and pasting, or FTP-ing your CSS up to the server.
+
+I'm sure there's some other use cases too. If you have any, let me know!
+
+## Boring Copyright Stuff
 
 Copyright (C) 2011 by Ed Rooth (www.edrooth.com)
 
