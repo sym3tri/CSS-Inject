@@ -11,6 +11,7 @@ Available here (coming soon...)
 
 * Specify any hosted CSS file to inject (local files must be hosted under http://localhost/... - security restriction of Chrome)
 * Single click toggles injection on/off
+* Native JavaScript only - no included libraries or unnecessary code to slow you down.
 
 ## Why do I want this?
 
