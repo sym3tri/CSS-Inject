@@ -1,11 +1,14 @@
 # CSS Inject
 
+![CSS Inject logo](/icon-128.png)
 A Chrome Extension that allows injection of any hosted CSS file into a webpage
 
 ## Installation
 
 Just download and install it like any other old chrome extension.
-Available here (coming soon...)
+
+[Download Available in Chrome Extension Gallery](https://chrome.google.com/extensions/detail/fmiohbdblcemacakpnoinjmcelddpjbg)
+
 
 ## Features
 
@@ -21,6 +24,8 @@ but you can't easily update the CSS file on the server.
 
 Using this plugin: you can work off a localhost hosted CSS file, just hit save, and see the results immediately.
 No more copying and pasting, or FTP-ing your CSS up to the server.
+
+Other CSS manipulation plugins only inject their own static css, or make you copy and paste into a box.
 
 I'm sure there's some other use cases too. If you have any, let me know!
 
