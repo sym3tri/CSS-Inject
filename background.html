@@ -23,7 +23,6 @@
         state = 'off';
     }
 
-
     // EVENTS
 
     // User clicked the activate action button
@@ -38,7 +37,7 @@
             {
                 state: state, 
                 id: 'cssinject-injected-cssfile', 
-                href: localStorage['cssfile']
+                href: localStorage['cssfile'] + '?' + (new Date()).getTime()
             }, 
             function(resp) {
                 if (!resp.ok) {
