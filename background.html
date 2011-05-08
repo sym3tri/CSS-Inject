@@ -2,7 +2,6 @@
 <head>
     <script>
 
-    // TODO: icons
     // TODO: Shortcut keys 
     // TODO: Optionally remove all existing CSS?
     // TODO: Keep 'on' state after page refresh
@@ -10,7 +9,7 @@
     var state = 'off';
 
     function error(msg) {
-        alert('An error occurred. ' + msg);
+        alert('ERROR: ' + msg);
     }
 
     function turnOn(tabId) {
@@ -23,10 +22,20 @@
         state = 'off';
     }
 
+    function isUrlValid(url) {
+        return (url && url.length > 3) ? true : false;
+    }
+
     // EVENTS
 
     // User clicked the activate action button
     chrome.browserAction.onClicked.addListener(function(tab) {
+
+        // error check
+        if (!isUrlValid(localStorage['cssfile'])) {
+            error('No CSS url specified. Please specify url in extesion options.');
+            return;
+        }
 
         // toggle state on click
         state = state === 'off' ? 'on' : 'off';
@@ -41,7 +50,7 @@
             }, 
             function(resp) {
                 if (!resp.ok) {
-                    error('could not load css file');
+                    error('Could not load CSS file');
                 }
 
                 state === 'on' ? turnOn(tab.id) : turnOff(tab.id);
