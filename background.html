@@ -3,33 +3,18 @@
     <script>
 
     // TODO: Shortcut keys 
-    // TODO: Optionally remove all existing CSS?
-    // TODO: Keep 'on' state after page refresh
+    // TODO: Optionally remove ALL existing CSS?
 
-    var state = 'off';
+    // global object to track on/off state of each tab
+    var state = {};
 
+    // Displays error messages
     function error(msg) {
         alert('ERROR: ' + msg);
     }
 
+    // Turn on the plugin badge and inject the css
     function turnOn(tabId) {
-        state = 'on';
-        chrome.browserAction.setBadgeText({text: 'on', tabId: tabId});
-    }
-
-    function turnOff(tabId) {
-        chrome.browserAction.setBadgeText({text: '', tabId: tabId});
-        state = 'off';
-    }
-
-    function isUrlValid(url) {
-        return (url && url.length > 3) ? true : false;
-    }
-
-    // EVENTS
-
-    // User clicked the activate action button
-    chrome.browserAction.onClicked.addListener(function(tab) {
 
         // error check
         if (!isUrlValid(localStorage['cssfile'])) {
@@ -37,27 +22,98 @@
             return;
         }
 
-        // toggle state on click
-        state = state === 'off' ? 'on' : 'off';
+        // update state
+        state[tabId] = 'on';
 
-        // send a 'load/unload' msg to the embedded content script
+        // send request to content script
+        sendInjectionRequest(tabId, state[tabId], function() {
+        
+            // update badge
+            chrome.browserAction.setBadgeText({text: 'on', tabId: tabId});
+        });
+    }
+
+    // Turn off the plugin badge
+    function turnOff(tabId) {
+        
+        // just delete the property if it exists
+        delete state[tabId];
+
+        // send request to content script
+        sendInjectionRequest(tabId, 'off', function() {
+
+            // update badge
+            chrome.browserAction.setBadgeText({text: '', tabId: tabId});
+        });
+    }
+
+    // send 'load/unload' request to the embedded content script
+    function sendInjectionRequest(tabId, tabState, callback) {
+
         chrome.tabs.sendRequest(
-            tab.id, 
+            tabId, 
             {
-                state: state, 
-                id: 'cssinject-injected-cssfile', 
+                // state of current tab
+                state: tabState,
+                // id of <link> element to inject
+                id: 'cssinject-injected-cssfile',
+                // css file path specified by user in options plus a timestamp to prevent caching
                 href: localStorage['cssfile'] + '?' + (new Date()).getTime()
             }, 
             function(resp) {
+                // something went wrong
                 if (!resp.ok) {
                     error('Could not load CSS file');
                 }
-
-                state === 'on' ? turnOn(tab.id) : turnOff(tab.id);
+                if (callback) {
+                    callback();
+                }
             }
         );
+    }
 
-    });
+    // Checks if the supplied url is valid
+    // TODO: make this more robust
+    function isUrlValid(url) {
+        return (url && url.length > 3) ? true : false;
+    }
+
+    // toggles css injection on/off
+    function toggleInjection(tab) {
+
+        // toggle state on click
+        state[tab.id] === 'on' ? turnOff(tab.id) : turnOn(tab.id);
+    }
+
+    // restore state on page reloads
+    function restoreState(req, sender, sendResponse) {
+
+        // first get current window
+        chrome.windows.getCurrent(function(win) {
+
+            // then get current tab
+            chrome.tabs.getSelected(win.id, function(tab) {
+       
+                // check the tab's state 
+                if (state[tab.id] === 'on') {
+
+                    // if it should be on turn it on
+                    turnOn(tab.id);
+
+                    // notify content script that all is good
+                    sendResponse({ok: true});
+                }
+            });
+        });
+    }
+
+    // EVENT HANDLERS
+
+    // User clicked the activate action button, kick off all the injection goodness
+    chrome.browserAction.onClicked.addListener(toggleInjection);
+
+    // Handle requests from embedded content script
+    chrome.extension.onRequest.addListener(restoreState);
 
     </script>
 </head>
