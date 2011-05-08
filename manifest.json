@@ -1,7 +1,7 @@
 {
     "name": "CSS Inject",
-    "version": "1.0",
-    "description": "Injects any hosted CSS file into a webpage",
+    "version": "1.1",
+    "description": "Injects any hosted CSS file into a any webpage",
     "homepage_url": "https://github.com/sym3tri/CSS-Inject",
    
     "browser_action": {
