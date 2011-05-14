@@ -40,8 +40,25 @@ function restore_options() {
 
 <style>
 body {
-    font-family: arial;
+    font-family: arial, sans-serif;
     font-size: 14px;
+    background-color: #ccc;
+}
+#header {
+    clear: both;
+    width: 300px;
+    font-family: arial;
+}
+#logo {
+    float: left;
+}
+#header h1 {
+    color: #333;
+    float: right;
+    margin-top: 50px;
+}
+#content {
+    clear: both;
 }
 #status {
     height: 50px;
@@ -52,24 +69,33 @@ body {
 </head>
 
 <body onload="init()">
-    <div id='status'></div>
+    <div id="header">
+        <img id="logo" src="icon-128.png"/>
+        <h1>CSS Inject</h1>
+    </div>
 
-    <label for="cssfile">CSS File to inject (must be hosted on a web server):</label>
-    <br/>
-    
-    <input type="text" id="cssfile" style="width: 300px;" />
-    <br/>
-    <br/>
-   
-    <!-- 
-    <input type="checkbox" id="removeExistingCss" value="true" />
-    <label for="removeExistingCss">Remove all existing CSS? (experimental)</label>
-    -->
+    <div id="content">
+        <div id="status"></div>
 
-    <br/>
-    <br/>
-    
-    <button onclick="save_options()">Save</button>
+        <label for="cssfile">
+            <strong>CSS File to inject</strong>
+            <br/>(must be web-server hosted i.e. http://localhost...)</label>
+        <br/>
+        
+        <input type="text" id="cssfile" style="width: 300px;" />
+        <br/>
+        <br/>
+       
+        <!-- 
+        <input type="checkbox" id="removeExistingCss" value="true" />
+        <label for="removeExistingCss">Remove all existing CSS? (experimental)</label>
+        -->
+
+        <br/>
+        <br/>
+        
+        <button onclick="save_options()">Save</button>
+    </div>
 </body>
 </html>
 
