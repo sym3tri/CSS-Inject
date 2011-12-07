@@ -22,7 +22,7 @@ This is to aid in theming websites such as Wordpress or Tumblr.
 It's for those cases where you're developing a complex Stylesheet for a site template
 but you can't easily update the CSS file on the server.
 
-Using this plugin: you can work off a localhost hosted CSS file, just hit save, and see the results immediately.
+Using this plug-in: you can work off a localhost hosted CSS file, just hit save, and see the results immediately.
 No more copying and pasting, or FTP-ing your CSS up to the server.
 
 Other CSS manipulation plugins only inject their own static css, or make you copy and paste into a box.
