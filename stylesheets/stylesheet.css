@@ -331,14 +331,13 @@ Full-Width Styles
   background: url('../images/icon_download.png') no-repeat 0% 90%;
 }
 
-.download_link {
+.chrome_download_link {
   display: block;
   float: right;
   width: 90px;
   height:70px;
-  text-indent: -5000px;
   overflow: hidden;
-  background: url(../images/sprite_download.png) no-repeat bottom left;
+  background: url(../images/chrome_download.png) no-repeat center center;
 }
 
 .zip_download_link {
