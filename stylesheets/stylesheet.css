@@ -323,7 +323,7 @@ Full-Width Styles
 
 #downloads {
   position: absolute;
-  width: 210px;
+  width: 120px;
   z-index: 10;
   bottom: -40px;
   right: 0;
@@ -337,7 +337,7 @@ Full-Width Styles
   width: 90px;
   height:70px;
   overflow: hidden;
-  background: url(../images/chrome_download.png) no-repeat center center;
+  background: url(../images/chrome_download.png) no-repeat bottom left;
 }
 
 .zip_download_link {
