@@ -1,31 +1,33 @@
 {
-    "name": "CSS Inject",
-    "version": "1.1",
-    "description": "Injects any hosted CSS file into a any webpage",
-    "homepage_url": "https://github.com/sym3tri/CSS-Inject",
-   
-    "browser_action": {
-        "name": "Inject CSS",
-        "default_icon": "icon-19.png"
-    },
+  "manifest_version": 2,
+  "name": "CSS Inject",
+  "version": "1.2",
+  "description": "Injects any hosted CSS file into a any webpage",
+  "homepage_url": "https://github.com/sym3tri/CSS-Inject",
 
-    "icons": {
-        "16": "icon-16.png",
-        "48": "icon-48.png",
-        "128": "icon-128.png"
-    },
+  "browser_action": {
+    "default_title": "CSS Inject",
+    "default_icon": "icon-19.png"
+  },
 
-    "options_page": "options.html",
+  "icons": {
+    "16": "icon-16.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  },
 
-    "background_page": "background.html",
+  "options_page": "options.html",
 
-    "content_scripts": [{
-        "matches": ["http://*/*", "https://*/*"],
-        "js": ["loadcss.js"] 
-    }],
+  "background": {
+    "scripts": ["background.js"]
+  },
 
-    "permissions": [
-        "tabs", "http://*/*", "https://*/*"
-    ]
+  "content_scripts": [{
+    "matches": ["http://*/*", "https://*/*"],
+    "js": ["loadcss.js"]
+  }],
+
+  "permissions": [
+    "tabs", "http://*/*", "https://*/*"
+  ]
 }
-

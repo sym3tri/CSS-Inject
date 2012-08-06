@@ -1,0 +1,25 @@
+body {
+  font-family: arial, sans-serif;
+  font-size: 14px;
+  background-color: #efefef;
+}
+#header {
+  clear: both;
+  width: 300px;
+  font-family: arial;
+}
+#logo {
+  float: left;
+}
+#header h1 {
+  color: #333;
+  float: right;
+  margin-top: 50px;
+}
+#content {
+  clear: both;
+}
+#status {
+  height: 50px;
+  color: limeGreen;
+}

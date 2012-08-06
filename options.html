@@ -1,101 +1,34 @@
+<!doctype html>
 <html>
+
 <head>
-<title>CSS Inject Options</title>
-
-<script>
-
-// Initialize
-function init() {
-    // focus on the input field 
-    var cssfile = document.getElementById('cssfile');
-    cssfile.focus();
-    
-    restore_options();
-}
-
-// Saves options to localStorage.
-function save_options() {
-    var cssfile = document.getElementById('cssfile');
-    localStorage['cssfile'] = cssfile.value;
-
-    // Update status to let user know options were saved.
-    var status = document.getElementById('status');
-    status.innerHTML = 'Options Saved.';
-    setTimeout(function() {
-        status.innerHTML = '';
-    }, 750);
-}
-
-// Restores select box state to saved value from localStorage.
-function restore_options() {
-    var cssfileValue = localStorage['cssfile'];
-    if (!cssfileValue) {
-        return;
-    }
-
-    var cssfile = document.getElementById('cssfile');
-    cssfile.value = cssfileValue;
-}
-</script>
-
-<style>
-body {
-    font-family: arial, sans-serif;
-    font-size: 14px;
-    background-color: #ccc;
-}
-#header {
-    clear: both;
-    width: 300px;
-    font-family: arial;
-}
-#logo {
-    float: left;
-}
-#header h1 {
-    color: #333;
-    float: right;
-    margin-top: 50px;
-}
-#content {
-    clear: both;
-}
-#status {
-    height: 50px;
-    color: #00ff00;
-}
-</style>
-
+  <title>CSS Inject Options</title>
+  <link href="options.css" rel="stylesheet" type="text/css">
 </head>
 
-<body onload="init()">
-    <div id="header">
-        <img id="logo" src="icon-128.png"/>
-        <h1>CSS Inject</h1>
-    </div>
-
-    <div id="content">
-        <div id="status"></div>
-
-        <label for="cssfile">
-            <strong>CSS File to inject</strong>
-            <br/>(must be web-server hosted i.e. http://localhost...)</label>
-        <br/>
-        
-        <input type="text" id="cssfile" style="width: 300px;" />
-        <br/>
-        <br/>
-       
-        <!-- 
-        <input type="checkbox" id="removeExistingCss" value="true" />
-        <label for="removeExistingCss">Remove all existing CSS? (experimental)</label>
-        -->
-
-        <br/>
-        <br/>
-        
-        <button onclick="save_options()">Save</button>
-    </div>
+<body>
+  <div id="header">
+    <img id="logo" src="icon-128.png"/>
+    <h1>CSS Inject</h1>
+  </div>
+  <div id="content">
+    <div id="status"></div>
+    <label for="cssfile">
+      <strong>CSS File to inject</strong>
+      <br/>(must be web-server hosted i.e. http://localhost/test.css)</label>
+    <br/>
+    <input type="text" id="cssfile" style="width: 300px;" />
+    <br/>
+    <br/>
+    <!--
+    <input type="checkbox" id="removeExistingCss" value="true" />
+    <label for="removeExistingCss">Remove all existing CSS? (experimental)</label>
+    -->
+    <br/>
+    <br/>
+    <button id="saveButton">Save</button>
+  </div>
+  <script src="options.js"></script>
 </body>
-</html>
 
+</html>
