@@ -1,13 +1,13 @@
 {
   "manifest_version": 2,
   "name": "CSS Inject",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Injects any hosted CSS file into a any webpage",
   "homepage_url": "https://github.com/sym3tri/CSS-Inject",
 
   "browser_action": {
     "default_title": "CSS Inject",
-    "default_icon": "icon19.png"
+    "default_icon": "images/icon19.png"
   },
 
   "icons": {
