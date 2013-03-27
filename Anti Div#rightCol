@@ -1,0 +1,31 @@
+#rightCol { 
+    width: 0px; 
+} 
+
+.fixedAux { 
+    display: none; 
+} 
+
+div#zbar { 
+    display: none; 
+} 
+
+div#MOTD.noticebox { 
+    display: none; 
+} 
+
+#LikePluginPagelet { 
+    display: none; 
+} 
+
+.liquid div#globalContainer { 
+    padding-right: 0px; 
+} 
+
+literal { 
+    display: none; 
+} 
+
+#flashapp { 
+    height: 670px; /* Change the value according to your desired height */ 
+}
